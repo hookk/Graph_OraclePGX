@@ -1,0 +1,44 @@
+procedure color(G: graph; color: nodeProperty<int>): int {
+	G.color = -1;
+	int max_degree = max(n: G.nodes){n.degree()};
+	node(G) start;
+	foreach(r: G.nodes) {
+		if(r.degree() == max_degree)
+			start = r;
+	}
+	
+	start.color = 0;
+	nodeProperty<bool>(G) checked;
+	G.checked = false;
+	
+	nodeSeq seq;
+	//seq.push(start);
+	start.checked = true;
+	
+	inBFS (r: G.nodes from start) {
+		if(!r.checked) {
+			r.checked = true;
+			seq.push(r);
+		}
+	}
+	
+	int max_col = 0;
+	for(t: seq.items) {
+		map<int, int> colorMap;
+		foreach(n: t.nbrs) {
+			colorMap[n.color]++;
+		}
+		int i =0;
+		while(i<G.numNodes()) {
+			if(!colorMap.hasKey(i)) {
+				t.color = i;
+				if(i>max_col) {
+					max_col = i;
+				}
+				i = G.numNodes();
+			}
+			i++;
+		}
+	}
+	return max_col;
+}

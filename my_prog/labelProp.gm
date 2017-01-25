@@ -1,5 +1,4 @@
-procedure label_prop(G: graph, id: int) : int{
-	nodeProperty<int>(G) label;
+procedure label_prop(G: graph; label: nodeProperty<int>(G)) : int{
 	int l = 0;
 	G.label = 0;
 	foreach(r: G.nodes) {
@@ -34,12 +33,6 @@ procedure label_prop(G: graph, id: int) : int{
 				cont = true;
 		}
 		*/
-	}
-	int c = 0;
-	for(r: G.nodes){
-		if(c == id)
-			return r.label;
-		c++;
 	}
 	return i_count;
 }
