@@ -1,0 +1,45 @@
+procedure label_prop(G: graph, id: int) : int{
+	nodeProperty<int>(G) label;
+	int l = 0;
+	G.label = 0;
+	foreach(r: G.nodes) {
+		r.label = l;
+		l = l+1;
+	}
+	int i_count = 0;
+	int updates = -1;
+	bool cont = true;
+//	while(cont) {
+	while(updates != 0) {
+//		cont = false;
+		updates = 0;
+		for(r: G.nodes) {
+			map<int, int> labelMap;
+			foreach(n: r.nbrs) {
+				labelMap[n.label]++;
+			}
+			if(r.label != labelMap.getMaxKey()){
+				updates++;
+				r.label = labelMap.getMaxKey();
+			}
+		}
+		i_count++;
+		/*
+		for(r: G.nodes) {
+			map<int, int> labelMap;
+			foreach(n: r.nbrs) {
+				labelMap[n.label]++;
+			}
+			if(r.label != labelMap.getMaxKey())
+				cont = true;
+		}
+		*/
+	}
+	int c = 0;
+	for(r: G.nodes){
+		if(c == id)
+			return r.label;
+		c++;
+	}
+	return i_count;
+}

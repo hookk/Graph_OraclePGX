@@ -1,0 +1,4 @@
+procedure get_max_min (a , b : int; m : int) : int {
+if ( a < b ) { m = a ; return b ;}
+else { m = b ; return a ;}
+}

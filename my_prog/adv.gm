@@ -1,0 +1,3 @@
+procedure max_degree(G: graph): int {
+    return max(n: G.nodes) { n.degree() };
+}

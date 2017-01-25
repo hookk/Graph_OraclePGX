@@ -1,0 +1,5 @@
+{
+	"uri": "graph.adj",
+	"format": "adj_list",
+	"separator": " "
+}
